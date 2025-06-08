@@ -13,7 +13,7 @@ const DashboardLayout = ({children}:{
      </div>
      <main className="md:pl-72">
       <Navbar/>
-      Content {children}
+      {children}
      </main>
     </div>
   )
