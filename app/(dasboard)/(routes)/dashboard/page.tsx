@@ -3,6 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Code2, ImagesIcon, MessageSquare, Music4, VideoIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const tools = [
   {
@@ -43,15 +44,17 @@ const tools = [
 ];
 
 const DashboardPage = () => {
+  const router = useRouter();
+
   return (
   <div>
    <div className="mb-8 space-y-4">
     <h2 className="text-2xl md:text-4xl font-bold text-center font-mono">From Thought to Reality — Powered by AI.</h2>
     <p className="font-semibold text-gray-500 text-sm md:text-lg text-center">Your Gateway to Infinite Creation</p>
    </div>
-   <div className="px-4 md:px-20 lg:px-32 space-y-4">
+   <div className="px-4 md:px-20 lg:px-32 space-y-4 min-w-fit">
     {tools.map((tool) => (
-      <Card key={tool.href} 
+      <Card key={tool.href} onClick={() => router.push(tool.href)}
        className="p-4 border-black/5 flex items-center justify-between hover:shadow-lg hover:bg-yellow-100 transition cursor-pointer" >
        <div className="items-center gap-x-4 pl-20 flex">
         <div className={cn("p-2 w-fit rounded-md", tool.bgColor)}>
@@ -60,7 +63,7 @@ const DashboardPage = () => {
         <div className="font-semibold text-2xl md:text-3xl">
          {tool.label}
         </div>  
-        <div className="ml-72"><ArrowRight className="w-5 h-5" /></div>
+        <div className="ml-80"><ArrowRight className="w-5 h-5" /></div>
        </div>
       </Card>
     ))}
