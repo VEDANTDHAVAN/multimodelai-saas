@@ -28,13 +28,6 @@ const tools = [
     href: "/videogen",
   },
   {
-    label: "Music Generation",
-    icon: Music4,
-    color: "text-emerald-200",
-    bgColor: "bg-emerald-500/10",
-    href: "/musicgen",
-  },
-  {
     label: "Code Generation",
     icon: Code2,
     color: "text-pink-500",

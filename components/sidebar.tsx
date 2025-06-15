@@ -35,12 +35,6 @@ const routes = [
     color: "text-yellow-500",
   },
   {
-    label: "Music Generation",
-    icon: Music4,
-    href: "/musicgen",
-    color: "text-emerald-200",
-  },
-  {
     label: "Code Generation",
     icon: Code2,
     href: "/codegen",
