@@ -17,8 +17,10 @@ import Loader from "@/components/loader";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const ImageGenerationPage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
   const [error, setError] = useState<string>("");
@@ -64,6 +66,9 @@ const ImageGenerationPage = () => {
       
       form.reset();
     } catch (error: any) {
+      if(error?.response?.status === 403){
+        proModal.onOpen();
+      }
       console.error("Frontend error:", error);
       const errorMessage = error.response?.data?.error || error.message || "Something went wrong";
       setError(errorMessage);

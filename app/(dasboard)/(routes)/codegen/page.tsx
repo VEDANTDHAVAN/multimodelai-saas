@@ -16,6 +16,7 @@ import { Empty } from "@/components/empty";
 import Loader from "@/components/loader";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 // Define our message format similar to Together.ai expected format
 type Message = {
@@ -24,6 +25,7 @@ type Message = {
 };
 
 const CodegenPage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages] = useState<Message[]>([]);
 
@@ -57,6 +59,9 @@ const CodegenPage = () => {
       setMessages([...newMessages, assistantMessage]);
       form.reset();
     } catch (error: any) {
+      if(error?.response?.status === 403){
+        proModal.onOpen();
+      }
       console.error("API error:", error);
     } finally {
       router.refresh();
