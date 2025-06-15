@@ -75,21 +75,27 @@ const ImageGenerationPage = () => {
   // Function to download image
   const downloadImage = async (imageUrl: string, index: number) => {
     try {
-      // Create a temporary link to download the image
-      const link = document.createElement('a');
-      link.href = imageUrl;
-      link.download = `generated-image-${index + 1}.png`;
-      link.target = '_blank';
+      const response = await fetch(`/api/download-image?url=${encodeURIComponent(imageUrl)}`);
+  
+      if (!response.ok) throw new Error("Image fetch failed");
+  
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+  
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `generated-image-${index + 1}.jpeg`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+  
+      window.URL.revokeObjectURL(url);
     } catch (error) {
-      console.error("Download failed:", error);
-      // Fallback: open in new tab
-      window.open(imageUrl, '_blank');
+      console.error("Image download failed:", error);
+      window.open(imageUrl, "_blank"); // fallback
     }
   };
-
+  
   return (
     <div>
       <Heading
@@ -183,7 +189,7 @@ const ImageGenerationPage = () => {
                     <Button 
                       onClick={() => downloadImage(imageUrl, index)} 
                       variant="secondary" 
-                      className="w-full"
+                      className="w-full cursor-pointer"
                     >
                       <Download className="h-4 w-4 mr-2" /> 
                       Download

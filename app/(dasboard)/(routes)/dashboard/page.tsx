@@ -21,13 +21,6 @@ const tools = [
     href: "/imagegen",
   },
   {
-    label: "Video Generation",
-    icon: VideoIcon,
-    color: "text-yellow-500",
-    bgColor: "bg-yellow-500/10",
-    href: "/videogen",
-  },
-  {
     label: "Code Generation",
     icon: Code2,
     color: "text-pink-500",
