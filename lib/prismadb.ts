@@ -1,12 +1,12 @@
-import { PrismaClient } from '@prisma/client/scripts/default-index.js'
+import { PrismaClient } from './generated/prisma/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
 
-declare global {
-    var prismadb: PrismaClient | undefined;
-}
+/*declare global {
+    var prisma: PrismaClient | undefined;
+}*/
 
-const prisma = globalThis.prismadb || new PrismaClient().$extends(withAccelerate())
+const prismadb = new PrismaClient().$extends(withAccelerate()) //globalThis.prisma || 
 
-if(process.env.NODE_ENV !== "production") globalThis.prismadb = prisma;
+//if(process.env.NODE_ENV !== "production") globalThis.prisma = prismadb;
 
-export default prisma;
+export default prismadb;

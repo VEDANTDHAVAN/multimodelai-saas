@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
+import { increaseApiLimit, checkApiLimit } from '@/lib/api-limit';
 
 export async function POST(req: NextRequest) {
   try {
@@ -13,6 +14,11 @@ export async function POST(req: NextRequest) {
 
     if (!isValid) {
       return NextResponse.json({ error: "Invalid message format" }, { status: 400 });
+    }
+
+    const freeTrial = await checkApiLimit();
+    if(!freeTrial) {
+      return new NextResponse("Free Trial has Expired!!", {status: 403});
     }
 
     const response = await axios.post(
@@ -34,6 +40,8 @@ export async function POST(req: NextRequest) {
         }
       }
     );
+
+    await increaseApiLimit();
 
     return NextResponse.json({ result: response.data.choices[0].message.content, });
   } catch (error: any) {
