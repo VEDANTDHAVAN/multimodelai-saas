@@ -58,12 +58,19 @@ export async function POST(req: NextRequest) {
       count: 1
     });
 
-  } catch (error: any) {
-    console.error("❌ Image generation error:", error?.response?.data || error?.message || error);
-    
+  } catch (error: unknown) {
+    let errorMessage = 'Failed to generate image';
+    if (typeof error === 'object' && error !== null) {
+      if ('response' in error && typeof (error as any).response?.data === 'string') {
+        errorMessage = (error as any).response.data;
+      } else if ('message' in error && typeof (error as any).message === 'string') {
+        errorMessage = (error as any).message;
+      }
+    }
+    console.error("❌ Image generation error:", errorMessage);
     return NextResponse.json(
       { 
-        error: error?.response?.data?.error?.message || error?.message || 'Failed to generate image',
+        error: errorMessage,
         success: false
       },
       { status: 500 }
