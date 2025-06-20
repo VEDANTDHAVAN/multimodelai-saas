@@ -16,7 +16,7 @@ export const ProModal = () => {
   
   const onSubscribe = async () => {
     try {
-      router.push("/pricing");
+      router.push("/settings");
     } catch (error) {
       console.log(error, "Clerk Billing Error")
     }

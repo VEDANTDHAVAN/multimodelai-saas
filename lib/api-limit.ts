@@ -1,6 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import prismadb from "@/lib/prismadb";
 import { MAX_FREE_COUNT } from "@/constants";
+import { checkProServer } from "./razorpay";
 
 export const increaseApiLimit = async () => {
     const { userId } = await auth();
@@ -51,6 +52,9 @@ export const getApiLimitCount = async () => {
   if(!userId) {
     return 0;
   }
+
+  const isPro = await checkProServer();
+  if(isPro) return Infinity;
 
   const userApiLimit = await prismadb.userApiLimit.findUnique({
     where: {

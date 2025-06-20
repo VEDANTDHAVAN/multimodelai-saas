@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { Code2, ImagesIcon, LayoutDashboard, MessageSquare, Settings } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { FreeCounter } from "./free-counter";
+import checkProPlan from "@/hooks/check-pro-plan";
 
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] })
 
@@ -47,8 +48,9 @@ interface SidebarProps {
   apiLimitCount: number;
 }
 
-const SideBar = ({apiLimitCount = 0}: SidebarProps) => {
+const SideBar = ({apiLimitCount = 0,}: SidebarProps) => {
   const pathName = usePathname();
+  const isPro = checkProPlan();
 
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#1b2742] text-white">
@@ -71,7 +73,7 @@ const SideBar = ({apiLimitCount = 0}: SidebarProps) => {
           </Link>
         ))}
       </div>
-      <FreeCounter apiLimitCount={apiLimitCount} />
+      <FreeCounter isPro={isPro} apiLimitCount={apiLimitCount} />
     </div>
   )
 }

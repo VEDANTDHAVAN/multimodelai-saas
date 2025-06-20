@@ -34,6 +34,23 @@ export async function POST() {
       razorpaySubscriptionId: subscription.id,
     },
   });
+
+  await prismadb.userSubscription.upsert({
+    where: { userId },
+    update: {
+      razorpayCustomerId: customer.id,
+      razorpaySubscriptionId: subscription.id,
+      isActive: true,
+      planName: PlanName.Pro,
+    },
+    create: {
+      userId,
+      razorpayCustomerId: customer.id,
+      razorpaySubscriptionId: subscription.id,
+      isActive: true,
+      planName: PlanName.Pro,
+    },
+  })
   
   return NextResponse.json({subscriptionId: subscription.id});
 

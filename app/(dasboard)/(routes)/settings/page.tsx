@@ -2,9 +2,7 @@
 
 import { Heading } from "@/components/heading"
 import { SubscriptionButton } from "@/components/subscription-button";
-import prismadb from "@/lib/prismadb"
 import { useUser } from "@clerk/nextjs";
-import axios from "axios";
 import { SettingsIcon } from "lucide-react"
 import { useEffect, useState } from "react";
 

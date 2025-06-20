@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import axios from 'axios';
 import { increaseApiLimit, checkApiLimit } from '@/lib/api-limit';
+import { checkProServer } from '@/lib/razorpay';
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,7 +18,8 @@ export async function POST(req: NextRequest) {
     }
 
     const freeTrial = await checkApiLimit();
-    if(!freeTrial) {
+    const isPro = await checkProServer();
+    if(!freeTrial && !isPro) {
       return new NextResponse("Free Trial has Expired!!", {status: 403});
     }
 
@@ -40,7 +42,9 @@ export async function POST(req: NextRequest) {
       }
     );
 
+    if(!isPro){
     await increaseApiLimit();
+    }
 
     return NextResponse.json({ result: response.data.choices[0].message.content, });
   } catch (error: any) {
