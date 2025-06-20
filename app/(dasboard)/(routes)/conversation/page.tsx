@@ -59,7 +59,7 @@ const ConversationPage = () => {
 
       setMessages([...newMessages, assistantMessage]);
       form.reset();
-    } catch (error: any) {
+    } catch (error: unknown) {
       if(error?.response?.status === 403){
         proModal.onOpen();
       }else{
@@ -94,7 +94,7 @@ const ConversationPage = () => {
                     <Input
                       className="border-0 outline-none focus-visible:ring-1 focus-visible:ring-green-200 focus-visible:bg-green-100"
                       disabled={isLoading}
-                      placeholder="Ask me anything…"
+                      placeholder="Ask me unknownthing…"
                       {...field}
                     />
                   </FormControl>

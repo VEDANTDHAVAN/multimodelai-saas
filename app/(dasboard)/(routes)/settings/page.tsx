@@ -2,12 +2,10 @@
 
 import { Heading } from "@/components/heading"
 import { SubscriptionButton } from "@/components/subscription-button";
-import { useUser } from "@clerk/nextjs";
 import { SettingsIcon } from "lucide-react"
 import { useEffect, useState } from "react";
 
 export default function SettingsPage() {
-  const user = useUser();
   const [isPro, setIsPro] = useState(false);
   useEffect(() => {
     const checkPlan = async () => {

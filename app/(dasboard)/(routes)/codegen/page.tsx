@@ -59,7 +59,7 @@ const CodegenPage = () => {
 
       setMessages([...newMessages, assistantMessage]);
       form.reset();
-    } catch (error: any) {
+    } catch (error: unknown) {
       if(error?.response?.status === 403){
         proModal.onOpen();
       }else{

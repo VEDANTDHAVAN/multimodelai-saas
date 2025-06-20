@@ -9,7 +9,7 @@ interface RazorpayOptions {
   image?: string;
   order_id?: string;
   subscription_id?: string;
-  handler: (response: any) => void;
+  handler: (response: unknown) => void;
   prefill?: {
     name?: string;
     email?: string;
@@ -23,6 +23,6 @@ interface RazorpayOptions {
 
 declare global {
   interface Window {
-    Razorpay: any;
+    Razorpay: unknown;
   }
 }

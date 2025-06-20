@@ -2,7 +2,7 @@
 
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { ArrowRight, Code2, ImagesIcon, MessageSquare, Music4, VideoIcon } from "lucide-react";
+import { ArrowRight, Code2, ImagesIcon, MessageSquare } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 const tools = [

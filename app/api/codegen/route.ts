@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ result: response.data.choices[0].message.content, });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("LLaMA API Code Generation error:", error.response?.data || error.message || error);
     return NextResponse.json({ error: 'Failed to generate response' }, { status: 500 });
   }

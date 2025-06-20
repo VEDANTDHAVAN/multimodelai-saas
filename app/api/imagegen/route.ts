@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
       count: 1
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("❌ Image generation error:", error?.response?.data || error?.message || error);
     
     return NextResponse.json(
