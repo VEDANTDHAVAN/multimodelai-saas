@@ -66,7 +66,7 @@ const ImageGenerationPage = () => {
       }
       
       form.reset();
-    } catch (error: unknown) {
+    } catch (error: any) {
       if(error?.response?.status === 403){
         proModal.onOpen();
       }else{
