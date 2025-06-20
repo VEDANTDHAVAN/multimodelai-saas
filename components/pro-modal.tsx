@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { Check, Zap } from "lucide-react";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export const ProModal = () => {
   const proModal = useProModal();
@@ -18,7 +19,7 @@ export const ProModal = () => {
     try {
       router.push("/settings");
     } catch (error) {
-      console.log(error, "Clerk Billing Error")
+      toast.error("Clerk Billing Error");
     }
   }
 

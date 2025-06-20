@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { Zap } from "lucide-react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 declare global {
   interface Window {
@@ -64,7 +65,7 @@ export const SubscriptionButton = ({ isPro = false }: SubscriptionButtonProps) =
 
     } catch (error) {
       console.error("RAZORPAY_SUBSCRIBE_ERROR", error);
-      alert("Something went wrong while subscribing.");
+      toast.error("Something went wrong while subscribing.");
     } finally {
       setLoading(false);
     }
