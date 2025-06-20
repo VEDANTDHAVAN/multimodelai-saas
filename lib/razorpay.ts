@@ -1,4 +1,4 @@
-import { auth, currentUser } from "@clerk/nextjs/server";
+import { auth } from "@clerk/nextjs/server";
 import Razorpay from "razorpay";
 
 export const razorpay = new Razorpay({

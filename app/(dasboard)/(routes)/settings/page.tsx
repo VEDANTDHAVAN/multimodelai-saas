@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 export default function SettingsPage() {
   const user = useUser();
   const [isPro, setIsPro] = useState(false);
-  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const checkPlan = async () => {
       try {

@@ -23,18 +23,6 @@ model UserApiLimit {
   updatedAt DateTime @updatedAt
 }
 
-/*model UserSubscription {
-  id                String   @id @default(cuid())
-  userId            String   @unique
-  stripeCustomerId  String?  // Clerk uses Stripe for billing
-  stripeSubscriptionId String?  // Stripe subscription ID
-  stripePriceId     String?  // Stripe price ID for the plan
-  stripeCurrentPeriodEnd DateTime? // When the current period ends
-  status            String?  // active, canceled, incomplete, incomplete_expired, past_due, trialing, unpaid
-  isActive          Boolean  @default(false)
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-}*/
 enum PlanName {
   Free
   Pro
