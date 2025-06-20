@@ -119,7 +119,7 @@ const CodegenPage = () => {
             <div className={`max-w-[80%] md:max-w-[60%] mt-5 flex p-4 py-2 rounded-lg ${message.role === "user" 
               ? "bg-green-100 text-left text-black rounded-bl-none" : "bg-gray-200 text-black rounded-br-none"}`}>
             {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-            <p className="text-sm p-4 whitespace-pre-wrap items-start">
+            <p className="text-sm bg-white m-3 rounded-2xl shadow-2xl z-10 p-4 whitespace-pre-wrap items-start">
             {typeof message.content === "string"
           ? message.content
           : JSON.stringify(message.content, null, 2)}

@@ -1,16 +1,26 @@
 "use client";
 
 import { useProModal } from "@/hooks/use-pro-modal";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "./ui/dialog";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Badge } from "./ui/badge";
 import { tools } from "@/constants";
 import { Card } from "./ui/card";
 import { cn } from "@/lib/utils";
 import { Check, Zap } from "lucide-react";
 import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 export const ProModal = () => {
   const proModal = useProModal();
+  const router = useRouter();
+  
+  const onSubscribe = async () => {
+    try {
+      router.push("/pricing");
+    } catch (error) {
+      console.log(error, "Clerk Billing Error")
+    }
+  }
 
   return (
     <div>
@@ -40,7 +50,12 @@ export const ProModal = () => {
         </div>
        </DialogHeader>
        <DialogFooter>
-        <Button size="lg" className="w-full" variant="upgrade">
+        <Button 
+          onClick={onSubscribe}
+          size="lg" 
+          className="w-full" 
+          variant="upgrade"
+        >
           Upgrade <Zap className="fill-white ml-2"/>  
         </Button>
        </DialogFooter>
