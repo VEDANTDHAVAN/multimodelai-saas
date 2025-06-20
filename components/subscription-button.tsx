@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 
 declare global {
   interface Window {
-    Razorpay: unknown;
+    Razorpay: any;
   }
 }
 
@@ -47,7 +47,7 @@ export const SubscriptionButton = ({ isPro = false }: SubscriptionButtonProps) =
         name: "Multimodal AI SaaS",
         description: "Pro Plan Subscription",
         subscription_id: subscriptionId,
-        handler: function () {
+        handler: function (response: any) {
           alert("Subscription successful!");
           window.location.reload(); // refresh to reflect changes
         },

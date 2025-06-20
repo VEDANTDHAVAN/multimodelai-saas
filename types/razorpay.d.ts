@@ -23,6 +23,6 @@ interface RazorpayOptions {
 
 declare global {
   interface Window {
-    Razorpay: unknown;
+    Razorpay: any;
   }
 }
