@@ -23,7 +23,7 @@ export const LandingHero = () => {
        Build faster, smarter, and more creatively than ever before.
        </div>
        <div>
-        <Link href={isSignedIn ? "/dasboard": "/sign-up"}>
+        <Link href={isSignedIn ? "/dashboard": "/sign-up"}>
          <Button variant="upgrade" className="md:text-lg p-4 md:p-6 rounded-full font-semibold">
             Start Generating For Free
          </Button>
