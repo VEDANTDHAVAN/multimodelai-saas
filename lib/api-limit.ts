@@ -54,7 +54,7 @@ export const getApiLimitCount = async () => {
   }
 
   const isPro = await checkProServer();
-  if(!isPro) return 0;
+  if(isPro) return Infinity;
 
   const userApiLimit = await prismadb.userApiLimit.findUnique({
     where: {
